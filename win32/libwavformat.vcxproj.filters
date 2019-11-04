@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{5412cef1-f2ef-4b9f-8cbb-fbfc93ae5215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{174fcba7-0db9-44d2-b278-5bc81f9f9e7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libwavformat\libwaveformat.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libwavformat\input.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libwavformat\output.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

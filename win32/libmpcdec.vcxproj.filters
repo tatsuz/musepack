@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{7eafdb99-09f6-4547-bc7c-6c813d6a444b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{ee951c09-536a-439b-88f7-2af5486be253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interface">
+      <UniqueIdentifier>{9740220d-19a9-4eb3-a8e4-3e7af608ea82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libmpcdec\decoder.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmpcdec\huffman.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmpcdec\internal.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmpcdec\mpc_bits_reader.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmpcdec\mpcdec_math.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libmpcdec\requant.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\datatypes.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\minimax.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\mpc_types.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\mpcdec.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\mpcmath.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\reader.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mpc\streaminfo.h">
+      <Filter>interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libmpcdec\huffman.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\mpc_bits_reader.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\mpc_decoder.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\mpc_demux.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\mpc_reader.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\requant.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\streaminfo.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libmpcdec\synth_filter.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
