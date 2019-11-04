@@ -1361,8 +1361,8 @@ ShowProgress ( PsyModel* m,
 
     if ( samples == 0 ) {
         if ( DisplayUpdateTime >= 0 ) {
-            stderr_printf ("    %%|avg.bitrate| speed|play time (proc/tot)| CPU time (proc/tot)| ETA\n"
-                            "  -.-    -.- kbps  -.--x     -:--.-    -:--.-     -:--.-    -:--.-     -:--.-\r" );
+            stderr_printf ("    %%|avg.bitrate| speed |play time (proc/tot)| CPU time (proc/tot)| ETA\n"
+                            "  -.-|   -.- kbps| --.--x|   -:--.-    -:--.- |   -:--.-    -:--.- |   -:--.- \r" );
         }
         start = clock ();
         return;
@@ -1378,23 +1378,23 @@ ShowProgress ( PsyModel* m,
 
     // progress percent
 	if ( total_samples < mpc_int64_max )
-        stderr_printf ("\r%5.1f ", percent );
+        stderr_printf ("\r%5.1f|", percent );
     else
-        stderr_printf ("\r      " );
+        stderr_printf ("\r     |" );
 
     // average data rate
-    stderr_printf ( "%6.1f kbps ", kbps );
+    stderr_printf ( "%6.1f kbps|", kbps );
 
     // encoder speed
-    stderr_printf ( "%5.2fx ", speed );
+    stderr_printf ( "%6.2fx|", speed );
 
     // 2x duration in WAVE file time (encoded/total)
     stderr_printf ("%10.10s" , PrintTime ( m, samples      , (char)' ')+1 );
-    stderr_printf ("%10.10s ", PrintTime ( m, total_samples, (char)' ')+1 );
+    stderr_printf ("%10.10s|", PrintTime ( m, total_samples, (char)' ')+1 );
 
     // 2x coding time (encoded/total)
 	stderr_printf ("%10.10s" , PrintTime ( m, (curr - start) * (m->SampleFreq/CLOCKS_PER_SEC), (char)' ')+1 );
-	stderr_printf ("%10.10s ", PrintTime ( m, total_estim    * (m->SampleFreq/CLOCKS_PER_SEC), (char)' ')+1 );
+	stderr_printf ("%10.10s|", PrintTime ( m, total_estim    * (m->SampleFreq/CLOCKS_PER_SEC), (char)' ')+1 );
 
     // ETA
 	stderr_printf ( "%10.10s\r", samples < total_samples  ?  PrintTime (m, (total_estim - curr + start) * (m->SampleFreq/CLOCKS_PER_SEC), (char)' ')+1  :  "" );
