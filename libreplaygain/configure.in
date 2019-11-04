@@ -1,0 +1,11 @@
+AC_INIT(configure.in)
+AC_CONFIG_AUX_DIR(config)
+
+AM_CONFIG_HEADER(include/config.h)
+AM_INIT_AUTOMAKE(libreplaygain, 1.0)
+
+AC_LANG_C
+AC_PROG_CC
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile src/Makefile include/Makefile)

@@ -39,7 +39,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmpcdec", "libmpcdec.vcpr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwavformat", "libwavformat.vcproj", "{13D176A2-B6BB-403F-A816-AA1F388078B7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libreplaygain", "..\..\..\libreplaygain\libreplaygain.vcproj", "{CB7A02E8-393A-481B-BD18-E7D041D8C6B1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libreplaygain", "..\libreplaygain\libreplaygain.vcproj", "{CB7A02E8-393A-481B-BD18-E7D041D8C6B1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpcgain", "mpcgain.vcproj", "{76CBB7D4-0524-4569-9150-34BDE4235D04}"
 	ProjectSection(ProjectDependencies) = postProject
