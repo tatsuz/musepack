@@ -438,9 +438,6 @@ void mpc_decoder_read_bitstream_sv7(mpc_decoder * d, mpc_bits_reader * r)
 		} while ( SCF == d->SCF_Index_L[n] && (SCF = d->SCF_Index_R[n]));
     }
 
-//     if (d->seeking == TRUE)
-//         return;
-
     /***************************** Samples ****************************/
     for ( n = 0; n < Max_used_Band; n++ ) {
 		mpc_int16_t *q = d->Q[n].L, Res = d->Res_L[n];
@@ -514,6 +511,7 @@ void mpc_decoder_read_bitstream_sv8(mpc_decoder * d, mpc_bits_reader * r, mpc_bo
 		Max_used_Band = d->last_max_band + mpc_bits_can_dec(r, & mpc_can_Bands);
 		if (Max_used_Band > 32) Max_used_Band -= 33;
 	}
+
 	d->last_max_band = Max_used_Band;
 
 	if (Max_used_Band) {

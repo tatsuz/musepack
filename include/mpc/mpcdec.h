@@ -116,6 +116,8 @@ MPC_API void mpc_set_replay_level(mpc_demux * d, float level, mpc_bool_t use_gai
                           mpc_bool_t use_title, mpc_bool_t clip_prevention);
 /// decode frame
 MPC_API mpc_status mpc_demux_decode(mpc_demux * d, mpc_frame_info * i);
+/// decode frame : use mpc_demux_decode() instead. This function is only used by mpc2sv8.
+MPC_API mpc_status mpc_demux_decode_inner(mpc_demux * d, mpc_frame_info * i);
 /// get streaminfo
 MPC_API void mpc_demux_get_info(mpc_demux * d, mpc_streaminfo * i);
 /// seeks to a given sample

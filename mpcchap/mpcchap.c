@@ -22,6 +22,7 @@
 #include "../libmpcenc/libmpcenc.h"
 #include "iniparser.h"
 
+#include <inttypes.h>
 #include <sys/stat.h>
 
 #include <cuetools/cuefile.h>
@@ -82,6 +83,7 @@ mpc_status add_chaps_ini(char * mpc_file, char * chap_file, mpc_demux * demux, m
 	int chap_pos, end_pos, chap_size, i, nchap;
 	char * tmp_buff;
 	dictionary * dict;
+    mpc_status ret = MPC_STATUS_OK;
 
 	chap_pos = (demux->chap_pos >> 3) + si->header_position;
 	end_pos = mpc_demux_pos(demux) >> 3;
@@ -89,9 +91,13 @@ mpc_status add_chaps_ini(char * mpc_file, char * chap_file, mpc_demux * demux, m
 
 	stat(mpc_file, &stbuf);
 	tmp_buff = malloc(stbuf.st_size - chap_pos - chap_size);
+
 	in_file = fopen( mpc_file, "r+b" );
 	fseek(in_file, chap_pos + chap_size, SEEK_SET);
-	fread(tmp_buff, 1, stbuf.st_size - chap_pos - chap_size, in_file);
+    if (1 != fread(tmp_buff, stbuf.st_size - chap_pos - chap_size, 1, in_file)) {
+        ret = MPC_STATUS_FAIL;
+        goto error_read_in_file;
+    }
 	fseek(in_file, chap_pos, SEEK_SET);
 
 	dict = iniparser_load(chap_file);
@@ -104,8 +110,8 @@ mpc_status add_chaps_ini(char * mpc_file, char * chap_file, mpc_demux * demux, m
 		mpc_int64_t chap_pos = atoll(chap_sec);
 
 		if (chap_pos > si->samples - si->beg_silence)
-			fprintf(stderr, "warning : chapter %i starts @ %lli samples after the end of the stream (%lli)\n",
-			        i + 1, chap_pos, si->samples - si->beg_silence);
+            fprintf(stderr, "warning : chapter %i starts @ %" PRId64 " samples after the end of the stream (%" PRId64 ")\n",
+                    i + 1, chap_pos, si->samples - si->beg_silence);
 
 		Init_Tags();
 
@@ -141,13 +147,15 @@ mpc_status add_chaps_ini(char * mpc_file, char * chap_file, mpc_demux * demux, m
 	}
 
 	fwrite(tmp_buff, 1, stbuf.st_size - chap_pos - chap_size, in_file);
-	ftruncate(fileno(in_file), ftell(in_file));
+    if (0 != ftruncate(fileno(in_file), ftell(in_file)))
+        ret = MPC_STATUS_FAIL;
 
-	fclose(in_file);
-	free(tmp_buff);
-	iniparser_freedict(dict);
+    iniparser_freedict(dict);
+error_read_in_file:
+    fclose(in_file);
+    free(tmp_buff);
 
-	return MPC_STATUS_OK;
+    return ret;
 }
 
 mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, mpc_streaminfo * si)
@@ -158,6 +166,7 @@ mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, m
 	FILE * in_file;
 	int chap_pos, end_pos, chap_size, i;
 	char * tmp_buff;
+    mpc_status ret = MPC_STATUS_OK;
 
 	if (0 == (cd = cf_parse(chap_file, &format))) {
 		fprintf(stderr, "%s: input file error\n", chap_file);
@@ -172,7 +181,10 @@ mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, m
 	tmp_buff = malloc(stbuf.st_size - chap_pos - chap_size);
 	in_file = fopen( mpc_file, "r+b" );
 	fseek(in_file, chap_pos + chap_size, SEEK_SET);
-	fread(tmp_buff, 1, stbuf.st_size - chap_pos - chap_size, in_file);
+    if (1 != fread(tmp_buff, stbuf.st_size - chap_pos - chap_size, 1, in_file)) {
+        ret = MPC_STATUS_FAIL;
+        goto error_read_in_file;
+    }
 	fseek(in_file, chap_pos, SEEK_SET);
 
 	nchap = cd_get_ntrack(cd);
@@ -190,7 +202,7 @@ mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, m
 		chap_pos = (mpc_int64_t) si->sample_freq * track_get_start (track) / 75;
 
 		if (chap_pos > si->samples - si->beg_silence)
-			fprintf(stderr, "warning : chapter %i starts @ %lli samples after the end of the stream (%lli)\n",
+            fprintf(stderr, "warning : chapter %i starts @ %" PRId64 " samples after the end of the stream (%" PRId64 ")\n",
 			        i, chap_pos, si->samples - si->beg_silence);
 
 		Init_Tags();
@@ -224,12 +236,14 @@ mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, m
 	}
 
 	fwrite(tmp_buff, 1, stbuf.st_size - chap_pos - chap_size, in_file);
-	ftruncate(fileno(in_file), ftell(in_file));
+    if (0 != ftruncate(fileno(in_file), ftell(in_file)))
+        ret = MPC_STATUS_FAIL;
 
+error_read_in_file:
 	fclose(in_file);
 	free(tmp_buff);
 
-	return MPC_STATUS_OK;
+    return ret;
 }
 
 mpc_status dump_chaps(mpc_demux * demux, char * chap_file, int chap_nb)
@@ -247,7 +261,7 @@ mpc_status dump_chaps(mpc_demux * demux, char * chap_file, int chap_nb)
 
 	for (i = 0; i < chap_nb; i++) {
 		chap = mpc_demux_chap(demux, i);
-		fprintf(out_file, "[%lli]\ngain=%i\npeak=%i\n", chap->sample, chap->gain, chap->peak);
+        fprintf(out_file, "[%" PRId64 "]\ngain=%i\npeak=%i\n", chap->sample, chap->gain, chap->peak);
 		if (chap->tag_size > 0) {
 			int item_count, j;
 			char const * tag = chap->tag;

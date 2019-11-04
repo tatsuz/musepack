@@ -162,9 +162,9 @@ int convert(char * sv7file, char * sv8file)
 		mpc_frame_info frame;
 
 		demux->d->samples_to_skip = MPC_FRAME_LENGTH + MPC_DECODER_SYNTH_DELAY;
-		err = mpc_demux_decode(demux, &frame);
+        err = mpc_demux_decode_inner(demux, &frame);
 
-		if(frame.bits == -1) break;
+        if (MPC_IS_FAILURE(err) || frame.bits == -1) break;
 
 		datacpy(demux->d, &e);
 		writeBitstream_SV8 ( &e, si.max_band); // write SV8-Bitstream

@@ -13,8 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * License along with this library; If not, see <http://www.gnu.org/licenses/>
  */
 
 #include "mpc/mpcmath.h"
@@ -29,7 +28,7 @@ const float  tabsqrt_m  [   TABSTEP+1] [2];
 
 void   Init_FastMath ( void )
 {
-    int i; mpc_floatint X, Y; double xm, x0, xp, x, y; float* p;
+    int i; mpc_floatint X; double xm, x0, xp, x, y; float* p;
 
     p = (float*) tabatan2;
     for ( i = -TABSTEP; i <= TABSTEP; i++ ) {
@@ -56,7 +55,6 @@ void   Init_FastMath ( void )
     p = (float*) tabsqrt_ex;
     for ( i = 0; i < 255; i++ ) {
         X.n = (i << 23);
-        Y.n = (i << 23) + (1<<23) - 1;
         *p++ = sqrt(X.f);
     }
     X.n  = (255 << 23) - 1;

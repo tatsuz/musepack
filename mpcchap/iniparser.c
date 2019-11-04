@@ -184,10 +184,10 @@ char * iniparser_getsecname(dictionary * d, int n)
 /*--------------------------------------------------------------------------*/
 int iniparser_getnkey(dictionary * d, int n)
 {
-	int i, i_sec, cnt = 0 ;
+	int i, cnt = 0 ;
 
 	if (d==NULL) return -1 ;
-	for (i_sec=i=0 ; i<d->size ; i++) {
+	for (i=0 ; i<d->size ; i++) {
 		if (d->key[i]==NULL)
 			continue ;
 		if (strchr(d->key[i], ':')==NULL) {

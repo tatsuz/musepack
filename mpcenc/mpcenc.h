@@ -14,8 +14,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * License along with this library; If not, see <http://www.gnu.org/licenses/>
  */
 
 #ifndef MPCENC_MPCENC_H
@@ -42,6 +41,7 @@
 # include <fcntl.h>
 # include <windows.h>
 #elif defined __unix__  ||  defined __linux__  ||  defined __APPLE__
+# include <sys/select.h>
 # include <unistd.h>
 # include <locale.h>
 # include <langinfo.h>
@@ -50,7 +50,7 @@
 # include <unistd.h>
 #endif
 
-#if   defined __linux__
+#if   defined __GLIBC__
 #  include <fpu_control.h>
 #elif defined __FreeBSD__
 # include <machine/floatingpoint.h>
@@ -58,24 +58,11 @@
 # include <float.h>
 #endif
 
-
-#if !defined(__APPLE__)
-// use optimized assembler routines for Pentium III/K6-2/Athlon (only 32 bit OS, Intel x86 and no MAKE_xxBITS)
-// you need the NASM assembler on your system, the program becomes a little bit larger and decoding
-// on AMD K6-2 (x3), AMD K6-III (x3), AMD Duron (x1.7), AMD Athlon (x1.7), Pentium III (x2) and Pentium 4 (x1.8) becomes faster
-#define USE_ASM
-
-#endif
-
 // Use termios for reading values from keyboard without echo and ENTER
 #define USE_TERMIOS
 
 // make debug output in tags.c stfu
 #define STFU
-
-#if INT_MAX < 2147483647L
-# undef USE_ASM
-#endif
 
 #ifndef O_BINARY
 # ifdef _O_BINARY

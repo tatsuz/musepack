@@ -14,8 +14,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * License along with this library; If not, see <http://www.gnu.org/licenses/>
  */
 
 /* overflow of subband-samples */
@@ -1024,7 +1023,7 @@ EvalParameters (PsyModel * m, int argc, char** argv, char** InputFile, char** Ou
         }
         else if ( 0 == strcmp ( arg, "stderr") ) {                                      // Offset for threshold in quiet
             if ( ++k >= argc ) { stderr_printf ( errmsg, arg ); return -1; }
-            freopen ( argv[k], "a", stderr );
+            if ( 0 == freopen ( argv[k], "a", stderr ) ) { stderr_printf ("invalid stderr filename"); return -1; }
         }
         else if ( 0 == strcmp ( arg, "ltq")  ||  0 == strcmp ( arg, "ath") ) {          // threshold in quiet
             if ( ++k >= argc ) { stderr_printf ( errmsg, arg ); return -1; }
@@ -1209,11 +1208,12 @@ EvalParameters (PsyModel * m, int argc, char** argv, char** InputFile, char** Ou
             p = strchr ( argv[k], '=' );
             if ( p == NULL ) {
                 stderr_printf (" Enter value for tag key '%s': ", argv[k] );
-                fgets ( buff, sizeof buff, stdin );
-                len = strlen (buff);
-                while ( len > 0  &&  (buff [len-1] == '\r'  ||  buff [len-1] == '\n') )
-                    len--;
-                addtag ( arg, strlen(arg), buff, len, NoUnicode*6, 0 );
+                if (0 != fgets ( buff, sizeof buff, stdin )) {
+                    len = strlen (buff);
+                    while ( len > 0  &&  (buff [len-1] == '\r'  ||  buff [len-1] == '\n') )
+                        len--;
+                    addtag ( arg, strlen(arg), buff, len, NoUnicode*6, 0 );
+                }
             }
             else {
                 fp = fopen ( p+1, "rb" );
@@ -1458,6 +1458,8 @@ static void Init_FPU ( void )
     _asm { fstcw cw };
     cw  &=  ~0x300;
 	_asm { fldcw cw };
+#else
+    (void)cw; // remove unused variable warning
 #endif
 }
 

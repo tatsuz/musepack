@@ -12,10 +12,6 @@ endif(MSVC)
 
 add_executable(mpcdec_cmd mpcdec.c)
 
-if(NOT MSVC)
-target_link_libraries(mpcdec_cmd m)
-endif(NOT MSVC)
-
 target_link_libraries(mpcdec_cmd wavformat_static)
 
 if(SHARED)
@@ -23,6 +19,10 @@ if(SHARED)
 else(SHARED)
   target_link_libraries(mpcdec_cmd mpcdec_static)
 endif(SHARED)
+
+if(NOT MSVC)
+target_link_libraries(mpcdec_cmd m)
+endif(NOT MSVC)
 
 SET_TARGET_PROPERTIES(mpcdec_cmd PROPERTIES OUTPUT_NAME "mpcdec")
 
