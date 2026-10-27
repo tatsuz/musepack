@@ -282,9 +282,11 @@ static mpc_status mpc_demux_ST(mpc_demux * d)
 		diff_pwr++;
 		tmp = 2 + d->si.samples / (MPC_FRAME_LENGTH << d->seek_pwr);
 	}
-	if ((file_table_size >> diff_pwr) > tmp)
+	if ((file_table_size >> diff_pwr) >= tmp)
 		file_table_size = tmp << diff_pwr;
 	d->seek_table = malloc((size_t) (tmp * sizeof(mpc_seek_t)));
+	if (d->seek_table == 0)
+		return MPC_STATUS_FAIL;
 	d->seek_table_size = (file_table_size + ((1 << diff_pwr) - 1)) >> diff_pwr;
 
 	table = d->seek_table;
@@ -300,6 +302,8 @@ static mpc_status mpc_demux_ST(mpc_demux * d)
 
 	mask = (1 << diff_pwr) - 1;
 	for (i = 2; i < file_table_size; i++) {
+		if (r.buff >= d->buffer + d->bytes_total)
+			return MPC_STATUS_FAIL; // ran out of block bytes
 		int code = mpc_bits_golomb_dec(&r, 12);
 		if (code & 1)
 			code = -(code & (-1 << 1));
