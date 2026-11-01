@@ -21,7 +21,7 @@
 
 
 #define MAX_LPC_ORDER       35
-#define log2(x)             ( log (x) * (1./M_LN2) )
+// #define log2(x)             ( log (x) * (1./M_LN2) )
 #define ORDER_PENALTY       0
 
 

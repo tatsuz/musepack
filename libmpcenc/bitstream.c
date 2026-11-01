@@ -92,7 +92,7 @@ static const mpc_uint32_t Cnk_lost[MAX_ENUM / 2][MAX_ENUM] =
 	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 103, 55, 3347, 12419, 56459, 16987, 313105, 54177, 3076873, 3739321, 3132677, 66353813, 123012781, 236330717}
 };
 
-static const mpc_uint8_t log2[32] =
+static const mpc_uint8_t log2_mpc[32] =
 { 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6};
 
 static const mpc_uint8_t log2_lost[32] =
@@ -165,9 +165,9 @@ void encodeEnum(mpc_encoder_t * e, const mpc_uint32_t bits, const mpc_uint_t N)
 void encodeLog(mpc_encoder_t * e, mpc_uint32_t value, mpc_uint32_t max)
 {
 	if (value < log2_lost[max - 1])
-		writeBits(e, value, log2[max - 1] - 1);
+		writeBits(e, value, log2_mpc[max - 1] - 1);
 	else
-		writeBits(e, value + log2_lost[max - 1], log2[max - 1]);
+		writeBits(e, value + log2_lost[max - 1], log2_mpc[max - 1]);
 }
 
 void writeMagic(mpc_encoder_t * e)
