@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29418.71
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37806.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpcenc", "mpcenc.vcxproj", "{15082E34-9324-469F-8423-F995B4814A37}"
 EndProject
@@ -21,9 +21,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmpcdec", "libmpcdec.vcxp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwavformat", "libwavformat.vcxproj", "{13D176A2-B6BB-403F-A816-AA1F388078B7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libreplaygain", "..\libreplaygain\libreplaygain.vcxproj", "{CB7A02E8-393A-481B-BD18-E7D041D8C6B1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libreplaygain", "libreplaygain.vcxproj", "{CB7A02E8-393A-481B-BD18-E7D041D8C6B1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpcgain", "mpcgain.vcxproj", "{76CBB7D4-0524-4569-9150-34BDE4235D04}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcuefile", "libcuefile.vcxproj", "{51DC8313-C35B-4FFE-AC35-29E3658BFB36}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpcchap", "mpcchap.vcxproj", "{F3A5220F-167C-43CF-B80B-42DF7E80E69B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wavcmp", "wavcmp.vcxproj", "{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +127,30 @@ Global
 		{76CBB7D4-0524-4569-9150-34BDE4235D04}.Release|Win32.Build.0 = Release|Win32
 		{76CBB7D4-0524-4569-9150-34BDE4235D04}.Release|x64.ActiveCfg = Release|x64
 		{76CBB7D4-0524-4569-9150-34BDE4235D04}.Release|x64.Build.0 = Release|x64
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Debug|Win32.Build.0 = Debug|Win32
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Debug|x64.ActiveCfg = Debug|x64
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Debug|x64.Build.0 = Debug|x64
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Release|Win32.ActiveCfg = Release|Win32
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Release|Win32.Build.0 = Release|Win32
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Release|x64.ActiveCfg = Release|x64
+		{51DC8313-C35B-4FFE-AC35-29E3658BFB36}.Release|x64.Build.0 = Release|x64
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Debug|Win32.Build.0 = Debug|Win32
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Debug|x64.ActiveCfg = Debug|x64
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Debug|x64.Build.0 = Debug|x64
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Release|Win32.ActiveCfg = Release|Win32
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Release|Win32.Build.0 = Release|Win32
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Release|x64.ActiveCfg = Release|x64
+		{F3A5220F-167C-43CF-B80B-42DF7E80E69B}.Release|x64.Build.0 = Release|x64
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Debug|Win32.Build.0 = Debug|Win32
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Debug|x64.ActiveCfg = Debug|x64
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Debug|x64.Build.0 = Debug|x64
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Release|Win32.ActiveCfg = Release|Win32
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Release|Win32.Build.0 = Release|Win32
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Release|x64.ActiveCfg = Release|x64
+		{06C26DF4-2552-452F-A2E7-4F77E7A50DB4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

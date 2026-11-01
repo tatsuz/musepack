@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F3A5220F-167C-43CF-B80B-42DF7E80E69B}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="musepack_common.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="musepack_exe.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="musepack.props" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.29403.142</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\libcuefile\include;..\libreplaygain\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\mpcchap\dictionary.c" />
+    <ClCompile Include="..\mpcchap\iniparser.c" />
+    <ClCompile Include="..\mpcchap\mpcchap.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\mpcchap\dictionary.h" />
+    <ClInclude Include="..\mpcchap\iniparser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libcommon.vcxproj">
+      <Project>{51DC8313-C35B-4FFE-AC35-29E3658BFB36}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="libcuefile.vcxproj">
+      <Project>{49A26D14-0AD0-497E-A982-42BFD4D992FC}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="libmpcdec.vcxproj">
+      <Project>{4C5362CD-0BF2-4B3B-971B-8293EB1A1DC3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="libmpcenc.vcxproj">
+      <Project>{44EC1266-D2EE-47B8-ACFC-8BD52E7FFF96}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{51DC8313-C35B-4FFE-AC35-29E3658BFB36}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="musepack_common.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="musepack_lib.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="musepack.props" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.29403.142</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\libcuefile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YY_NEVER_INTERACTIVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libcuefile\src\cd.c" />
+    <ClCompile Include="..\libcuefile\src\cdtext.c" />
+    <ClCompile Include="..\libcuefile\src\cuefile.c" />
+    <ClCompile Include="..\libcuefile\src\cue_parse.c" />
+    <ClCompile Include="..\libcuefile\src\cue_print.c" />
+    <ClCompile Include="..\libcuefile\src\cue_scan.c" />
+    <ClCompile Include="..\libcuefile\src\time.c" />
+    <ClCompile Include="..\libcuefile\src\toc_parse.c" />
+    <ClCompile Include="..\libcuefile\src\toc_print.c" />
+    <ClCompile Include="..\libcuefile\src\toc_scan.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libcuefile\include\cuetools\cd.h" />
+    <ClInclude Include="..\libcuefile\include\cuetools\cdtext.h" />
+    <ClInclude Include="..\libcuefile\include\cuetools\cuefile.h" />
+    <ClInclude Include="..\libcuefile\src\cue.h" />
+    <ClInclude Include="..\libcuefile\src\cue_parse.h" />
+    <ClInclude Include="..\libcuefile\src\cue_parse_prefix.h" />
+    <ClInclude Include="..\libcuefile\src\time.h" />
+    <ClInclude Include="..\libcuefile\src\toc.h" />
+    <ClInclude Include="..\libcuefile\src\toc_parse.h" />
+    <ClInclude Include="..\libcuefile\src\toc_parse_prefix.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
