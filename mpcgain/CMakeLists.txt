@@ -13,14 +13,14 @@ FIND_LIBRARY(REPLAY_GAIN_LIBRARY NAMES replaygain replaygain_static PATHS
 include_directories(${libmpc_SOURCE_DIR}/include)
 include_directories(${REPLAY_GAIN_INCLUDE_DIR})
 
-link_directories(${libmpc_BINARY_DIR}/libmpcdec)
+link_directories(${libmpc_BINARY_DIR}/libmpcdec_shared)
 
 add_executable(mpcgain mpcgain.c)
 
 target_link_libraries(mpcgain ${REPLAY_GAIN_LIBRARY})
 
 if(SHARED)
-  target_link_libraries(mpcgain mpcdec)
+  target_link_libraries(mpcgain mpcdec_shared)
 else(SHARED)
   target_link_libraries(mpcgain mpcdec_static)
 endif(SHARED)

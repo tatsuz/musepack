@@ -15,7 +15,7 @@ add_executable(mpcdec_cmd mpcdec.c)
 target_link_libraries(mpcdec_cmd wavformat_static)
 
 if(SHARED)
-  target_link_libraries(mpcdec_cmd mpcdec)
+  target_link_libraries(mpcdec_cmd mpcdec_shared)
 else(SHARED)
   target_link_libraries(mpcdec_cmd mpcdec_static)
 endif(SHARED)

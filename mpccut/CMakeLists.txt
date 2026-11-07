@@ -13,7 +13,7 @@ endif(MSVC)
 add_executable(mpccut mpccut.c)
 
 if(SHARED)
-  target_link_libraries(mpccut mpcdec)
+  target_link_libraries(mpccut mpcdec_shared)
 else(SHARED)
   target_link_libraries(mpccut mpcdec_static)
 endif(SHARED)

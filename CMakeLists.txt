@@ -20,10 +20,6 @@ endif()
 
 add_definitions(-DFAST_MATH -DCVD_FASTLOG)
 
-if(NOT MSVC)
-  set(CMAKE_C_FLAGS "-O3 -Wall -fomit-frame-pointer -pipe")
-endif(NOT MSVC)
-
 add_subdirectory(libmpcdec)
 add_subdirectory(libmpcpsy)
 add_subdirectory(libmpcenc)

@@ -241,8 +241,8 @@ extern float __invSCF [128 + 6];        // tabulated scalefactors (inverted)
 
 float  ISNR_Schaetzer                  ( const float* samples, const float comp, const int res);
 float  ISNR_Schaetzer_Trans            ( const float* samples, const float comp, const int res);
-void   QuantizeSubband                 ( unsigned int* qu_output, const float* input, const int res, float* errors, const int maxNsOrder );
-void   QuantizeSubbandWithNoiseShaping ( unsigned int* qu_output, const float* input, const int res, float* errors, const float* FIR );
+void   QuantizeSubband                 ( mpc_int16_t* qu_output, const float* input, const int res, float* errors, const int maxNsOrder );
+void   QuantizeSubbandWithNoiseShaping ( mpc_int16_t* qu_output, const float* input, const int res, float* errors, const float* FIR );
 
 void   NoiseInjectionComp ( void );
 

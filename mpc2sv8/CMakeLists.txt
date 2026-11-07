@@ -13,7 +13,7 @@ endif(MSVC)
 add_executable(mpc2sv8 mpc2sv8.c)
 
 if(SHARED)
-  target_link_libraries(mpc2sv8 mpcdec)
+  target_link_libraries(mpc2sv8 mpcdec_shared)
 else(SHARED)
   target_link_libraries(mpc2sv8 mpcdec_static)
 endif(SHARED)

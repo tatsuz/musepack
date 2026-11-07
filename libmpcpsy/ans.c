@@ -287,12 +287,12 @@ NS_Analyse ( PsyModel* m,
     // for L or M, respectively
     memset ( m->FIR_L,      0, sizeof m->FIR_L      );         // reset FIR
     memset ( m->NS_Order_L, 0, sizeof m->NS_Order_L );         // reset Flags
-	FindOptimalANS ( MaxBand, MSflag, ANSspec_L, ANSspec_M, m->NS_Order_L, m->SNR_comp_L, m->FIR_L, smr.L, smr.M, m->SCF_Index_L, Transient );
+	FindOptimalANS ( MaxBand, MSflag, ANSspec_L, ANSspec_M, m->NS_Order_L, m->SNR_comp_L, m->FIR_L, smr.L, smr.M, (const void*)m->SCF_Index_L, Transient );
 
     // for R or S, respectively
 	memset ( m->FIR_R,      0, sizeof m->FIR_R      );         // reset FIR
 	memset ( m->NS_Order_R, 0, sizeof m->NS_Order_R );         // reset Flags
-	FindOptimalANS ( MaxBand, MSflag, ANSspec_R, ANSspec_S, m->NS_Order_R, m->SNR_comp_R, m->FIR_R, smr.R, smr.S, m->SCF_Index_R, Transient );
+	FindOptimalANS ( MaxBand, MSflag, ANSspec_R, ANSspec_S, m->NS_Order_R, m->SNR_comp_R, m->FIR_R, smr.R, smr.S, (const void*)m->SCF_Index_R, Transient );
 
     return;
 }
