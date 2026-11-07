@@ -20,10 +20,10 @@
 
 #ifdef FAST_MATH
 
-const float  tabatan2   [ 2*TABSTEP+1] [2];
-const float  tabcos     [26*TABSTEP+1] [2];
-const float  tabsqrt_ex [256];
-const float  tabsqrt_m  [   TABSTEP+1] [2];
+float  tabatan2   [ 2*TABSTEP+1] [2];
+float  tabcos     [26*TABSTEP+1] [2];
+float  tabsqrt_ex [256];
+float  tabsqrt_m  [   TABSTEP+1] [2];
 
 
 void   Init_FastMath ( void )

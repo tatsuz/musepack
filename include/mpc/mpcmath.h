@@ -86,10 +86,10 @@ static mpc_inline mpc_int32_t mpc_lrintf(float fVal)
 # define IFLOORF(x)   my_ifloor ((float)(x))
 
 void   Init_FastMath ( void );
-extern const float  tabatan2   [] [2];
-extern const float  tabcos     [] [2];
-extern const float  tabsqrt_ex [];
-extern const float  tabsqrt_m  [] [2];
+extern float  tabatan2   [] [2];
+extern float  tabcos     [] [2];
+extern float  tabsqrt_ex [];
+extern float  tabsqrt_m  [] [2];
 
 static mpc_inline float my_atan2 ( float x, float y )
 {
