@@ -1519,7 +1519,7 @@ Cd *cue_parse (FILE *fp)
 	yydebug = 0;
 
 	int error = yyparse();
-	cue_delete_buffer();
+//	cue_delete_buffer();
 	if (prev_filename) {
 		free(prev_filename);
 		prev_filename = 0;
