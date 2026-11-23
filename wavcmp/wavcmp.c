@@ -46,7 +46,7 @@ main(int argc, char **argv)
 	int err;
 	int total_samples, total_diff;
 
-	if(4 < argc && argc < 3)
+	if(4 < argc || argc < 3)
 	{
 		usage(argv[0]);
 		return 0;
