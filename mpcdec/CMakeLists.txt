@@ -7,7 +7,7 @@ link_directories(${libmpc_BINARY_DIR}/libmpcdec)
 
 if(MSVC)
 include_directories(${libmpc_SOURCE_DIR}/win32)
-add_executable(mpcdec_cmd mpcdec.c ${libmpc_SOURCE_DIR}/win32/attgetopt)
+add_executable(mpcdec_cmd mpcdec.c ${libmpc_SOURCE_DIR}/win32/attgetopt.c)
 endif(MSVC)
 
 add_executable(mpcdec_cmd mpcdec.c)

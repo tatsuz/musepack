@@ -7,7 +7,7 @@ link_directories(${libmpc_BINARY_DIR}/libmpcenc)
 
 if(MSVC)
 include_directories(${libmpc_SOURCE_DIR}/win32)
-add_executable(mpccut mpccut ${libmpc_SOURCE_DIR}/win32/attgetopt)
+add_executable(mpccut mpccut.c ${libmpc_SOURCE_DIR}/win32/attgetopt.c)
 endif(MSVC)
 
 add_executable(mpccut mpccut.c)

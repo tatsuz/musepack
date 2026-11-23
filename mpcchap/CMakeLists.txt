@@ -1,16 +1,9 @@
-FIND_PATH(CUEFILE_INCLUDE_DIR cuetools/cuefile.h
-	${libmpc_SOURCE_DIR}/../libcuefile/include
-)
-
-FIND_LIBRARY(CUEFILE_LIBRARY NAMES cuefile PATHS
-	${CUEFILE_INCLUDE_DIR}/../src
-)
-
 include_directories(${libmpc_SOURCE_DIR}/include)
-include_directories(${CUEFILE_INCLUDE_DIR})
+include_directories(${libmpc_SOURCE_DIR}/libcuefile/include)
 
 link_directories(${libmpc_BINARY_DIR}/libmpcdec)
 link_directories(${libmpc_BINARY_DIR}/libmpcenc)
+link_directories(${libmpc_BINARY_DIR}/libcuefile ${libmpc_BINARY_DIR}/libcuefile/src)
 
 add_executable(mpcchap mpcchap.c dictionary.c iniparser.c ${libmpc_SOURCE_DIR}/common/tags.c)
 
@@ -21,7 +14,7 @@ else(SHARED)
 endif(SHARED)
 
 target_link_libraries(mpcchap mpcenc_static)
-target_link_libraries(mpcchap ${CUEFILE_LIBRARY})
+target_link_libraries(mpcchap cuefile)
 
 if(NOT MSVC)
 target_link_libraries(mpcchap m)
